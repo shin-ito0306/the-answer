@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_053027) do
+ActiveRecord::Schema.define(version: 2021_09_03_080218) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_053027) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.string "question_image"
+    t.string "question_image_id"
     t.integer "reword_point"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_053027) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "user_image"
+    t.string "user_image_id"
     t.text "introduction"
     t.integer "point"
     t.datetime "created_at", null: false
