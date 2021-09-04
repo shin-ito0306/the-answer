@@ -6,3 +6,14 @@
   <%= link_to "削除", question_path(@question.id), method: :delete %>
   <%= link_to "編集", edit_question_path(@question.id) %>
 <% end %>
+
+<h3>回答</h3>
+<% @question.answers.each do |answer| %>
+  <%= answer.user.name %>
+  <%= answer.answer_content %>
+<% end %>
+
+<%= form_with model:[@question, @answer], local:true do |f| %>
+  <%= f.text_area :answer_content, placeholder: "コメントをここに" %>
+  <%= f.submit "保存" %>
+<% end %>
