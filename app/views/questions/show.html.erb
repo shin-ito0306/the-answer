@@ -11,6 +11,10 @@
 <% @question.answers.each do |answer| %>
   <%= answer.user.name %>
   <%= answer.answer_content %>
+  <% if answer.user_id == current_user.id %>
+    <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
+    <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
+  <% end %>
 <% end %>
 
 <%= form_with model:[@question, @answer], local:true do |f| %>

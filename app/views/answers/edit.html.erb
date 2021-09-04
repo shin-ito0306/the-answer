@@ -1,2 +1,4 @@
-<h1>Answers#edit</h1>
-<p>Find me in app/views/answers/edit.html.erb</p>
+<%= form_with model:[@question, @answer], local:true do |f| %>
+  <%= f.text_area :answer_content, placeholder: "コメントをここに" %>
+  <%= f.submit "保存" %>
+<% end %>
