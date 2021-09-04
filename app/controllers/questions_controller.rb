@@ -17,14 +17,21 @@ class QuestionsController < ApplicationController
     if question.save
       redirect_to questions_path
     else
-      render new
+      render :new
     end
   end
 
   def edit
+    @question = Question.find(params[:id])
   end
 
-  def udate
+  def update
+    question = Question.find(params[:id])
+    if question.update(question_params)
+      redirect_to question_path(question.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
