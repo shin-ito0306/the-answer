@@ -1,6 +1,4 @@
 class AnswersController < ApplicationController
-  def new
-  end
 
   def create
     question = Question.find(params[:question_id])
@@ -31,6 +29,17 @@ class AnswersController < ApplicationController
     Answer.find_by(params[:id]).destroy
     @question = Question.find(params[:question_id])
     redirect_to question_path(params[:question_id])
+  end
+
+  def best
+    question = Question.find(params[:question_id])
+    if question.answers.where(best_answer: 1) == nil
+      redirect_to question_path(params[:question_id])
+    else
+      @answer = Answer.find(params[:answer_id])
+      @answer.update(best_answer: 1)
+      redirect_to question_path(params[:question_id])
+    end
   end
 
   private

@@ -10,6 +10,11 @@
 <h3>回答</h3>
 <% @question.answers.each do |answer| %>
   <%= answer.user.name %>
+  <% if answer.best_answer %>
+    <p>ベストアンサー!</p>
+  <% elsif (@question.user_id == current_user.id) && (@question.user_id != answer.user_id) && (@question.answers.where(best_answer: 1).count == 0) %>
+    <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: @question.id, answer_id: answer.id) %>
+  <% end %>
   <%= answer.answer_content %>
   <% if answer.user_id == current_user.id %>
     <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
