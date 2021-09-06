@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
+  def destroy
+    User.find(current_user.id).destroy
+    redirect_to root_path
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :user_image, :introduction, :point)
