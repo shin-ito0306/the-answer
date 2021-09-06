@@ -4,7 +4,8 @@
 <%= @user.introduction %>
 <%= @user.point %>
 <% if @user == current_user %>
-  <%= link_to "マイページ編集", edit_user_path(@user.id) %>
+  <%= link_to "マイページ編集", edit_user_path(current_user.id) %>
+  <%= link_to "ポイント追加", user_point_edit_path(current_user.id) %>
 <% end %>
 
 <h2>質問履歴</h2>
