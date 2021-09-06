@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answer = Answer.new
   end
 
   def new
@@ -39,7 +40,7 @@ class QuestionsController < ApplicationController
     question.destroy
     redirect_to questions_path
   end
-
+  
   private
   def question_params
     params.require(:question).permit(:title, :question_image, :content)
