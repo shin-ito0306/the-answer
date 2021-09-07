@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'questions#index'
   resources :users, only: [:show, :edit, :update, :destroy] do
-    get 'point_edit' => 'users#point_edit'
-    patch 'point_update' => 'users#point_update'
+    get 'add_new_point' => 'users#add_new_point'
+    post 'add_point' => 'users#add_point'
     get 'unsubscribe' => 'users#unsubscribe'
   end
   resources :questions do

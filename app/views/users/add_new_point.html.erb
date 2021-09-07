@@ -1,4 +1,4 @@
-<%= form_with model:@user, url: user_point_update_path(@user.id), local:true do |f| %>
+<%= form_with url: user_add_point_path(@user.id), local:true do |f| %>
   <h3>現在のポイント</h3>
   <p><%= @user.point %>pt</p>
 

@@ -16,13 +16,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def point_edit
+  def add_new_point
     @user = User.find(current_user.id)
   end
 
-  def point_update
+  def add_point
     @user = User.find(params[:user_id])
-    point = point_params[:point].to_i + @user.point
+    point = params[:point].to_i + @user.point
     if @user.update(point: point)
       redirect_to user_path(@user.id)
     else
@@ -43,8 +43,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :user_image, :introduction)
   end
 
-  def point_params
-    params.require(:user).permit(:point)
-  end
 
 end
