@@ -1,5 +1,10 @@
 class AnswersController < ApplicationController
 
+  def new
+    @answer = Answer.new
+    @question = Question.find(params[:question_id])
+  end
+
   def create
     question = Question.find(params[:question_id])
     answer = current_user.answers.new(answer_params)

@@ -27,7 +27,4 @@
   <% end %>
 <% end %>
 
-<%= form_with model:[@question, @answer], local:true do |f| %>
-  <%= f.text_area :answer_content, placeholder: "コメントをここに" %>
-  <%= f.submit "保存" %>
-<% end %>
+<%= link_to '回答する', new_question_answer_path(@question.id) %>
