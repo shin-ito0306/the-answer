@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
     answer = current_user.answers.new(answer_params)
     answer.question_id = question.id
     if answer.save
-      notification = current_user.active_notifications.new(visited_id: question.user_id, action: "answer")
+      notification = current_user.active_notifications.new(visited_id: question.user_id, question_id: answer.question_id, action: "answer")
       notification.save if notification.valid?
       redirect_to question_path(question.id)
     else
@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    Answer.find_by(params[:id]).destroy
+    Answer.find(params[:id]).destroy
     @question = Question.find(params[:question_id])
     redirect_to question_path(params[:question_id])
   end
