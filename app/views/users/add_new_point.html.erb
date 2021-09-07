@@ -1,0 +1,12 @@
+<%= form_with url: user_add_point_path(@user.id), local:true do |f| %>
+  <h3>現在のポイント</h3>
+  <p><%= @user.point %>pt</p>
+
+  <h3>追加ポイント</h3>
+  <%= f.number_field :point %>
+
+
+  <%= f.submit 'ポイント追加' %>
+
+
+  <% end %>

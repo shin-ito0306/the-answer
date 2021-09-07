@@ -1,2 +1,14 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>マイページ</h2>
+<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg', fallback:"unnamed.png", size: "300x300" %>
+<%= @user.name %><br>
+<%= @user.introduction %>
+<%= @user.point %>
+<% if @user == current_user %>
+  <%= link_to "マイページ編集", edit_user_path(current_user.id) %>
+  <%= link_to "ポイント追加", user_add_new_point_path(current_user.id) %>
+<% end %>
+
+<h2>質問履歴</h2>
+<% @user.questions.each do |question| %>
+  <%= link_to "#{question.title}", question_path(question.user_id) %>
+<% end %>

@@ -1,0 +1,5 @@
+<h2><%= current_user.name %>様</h2>
+<h3>退会するとユーザーの情報全てが削除されます。</h3><br>
+<h3>本当に退会しますか</h3>
+<%= link_to '退会する', user_path(current_user), method: :delete %>
+<%= link_to '退会しない', root_path %>
