@@ -1,0 +1,9 @@
+<h4>通知</h4>
+<% if @notifications.exists? %>
+  <% @notifications.each do |notification| %>
+    <%= notification.visiter.name %>
+    <%= notification.action %>
+  <% end %>
+<% else %>
+  <p>通知がありません</p>
+<% end %>

@@ -10,6 +10,8 @@ class AnswersController < ApplicationController
     answer = current_user.answers.new(answer_params)
     answer.question_id = question.id
     if answer.save
+      notification = current_user.active_notifications.new(visited_id: question.user_id, action: "answer")
+      notification.save if notification.valid?
       redirect_to question_path(question.id)
     else
       render question_path(question.id)
