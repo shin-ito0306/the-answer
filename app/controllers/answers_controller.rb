@@ -38,6 +38,8 @@ class AnswersController < ApplicationController
     else
       @answer = Answer.find(params[:answer_id])
       @answer.update(best_answer: 1)
+      question.user.update(point: question.user.point -= question.reword_point)
+      @answer.user.update(point: @answer.user.point += question.reword_point)
       redirect_to question_path(params[:question_id])
     end
   end

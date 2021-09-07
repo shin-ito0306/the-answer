@@ -1,3 +1,7 @@
+<%= @question.title %>
+<%= attachment_image_tag @question, :question_image %>
+<%= @question.content %>
+
 <%= form_with model:[@question, @answer], local:true do |f| %>
   <%= f.text_area :answer_content, placeholder: "コメントをここに" %>
   <%= f.submit "保存" %>
