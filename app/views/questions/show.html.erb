@@ -2,8 +2,11 @@
 <%= @question.title %>
 <%= attachment_image_tag @question, :question_image %>
 <%= @question.content %>
+<%= @question.reword_point %>
 <% if @question.user.id == current_user.id %>
-  <%= link_to "削除", question_path(@question.id), method: :delete %>
+  <% unless @question.answers.where(best_answer: 1) %>
+    <%= link_to "削除", question_path(@question.id), method: :delete %>
+  <% end %>
   <%= link_to "編集", edit_question_path(@question.id) %>
 <% end %>
 
@@ -17,12 +20,11 @@
   <% end %>
   <%= answer.answer_content %>
   <% if answer.user_id == current_user.id %>
-    <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
+    <% unless answer.best_answer %>
+      <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
+    <% end %>
     <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
   <% end %>
 <% end %>
 
-<%= form_with model:[@question, @answer], local:true do |f| %>
-  <%= f.text_area :answer_content, placeholder: "コメントをここに" %>
-  <%= f.submit "保存" %>
-<% end %>
+<%= link_to '回答する', new_question_answer_path(@question.id) %>

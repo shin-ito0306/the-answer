@@ -1,5 +1,10 @@
 class AnswersController < ApplicationController
 
+  def new
+    @answer = Answer.new
+    @question = Question.find(params[:question_id])
+  end
+
   def create
     question = Question.find(params[:question_id])
     answer = current_user.answers.new(answer_params)
@@ -38,6 +43,8 @@ class AnswersController < ApplicationController
     else
       @answer = Answer.find(params[:answer_id])
       @answer.update(best_answer: 1)
+      question.user.update(point: question.user.point -= question.reword_point)
+      @answer.user.update(point: @answer.user.point += question.reword_point)
       redirect_to question_path(params[:question_id])
     end
   end

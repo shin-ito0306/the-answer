@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'unsubscribe' => 'users#unsubscribe'
   end
   resources :questions do
-    resources :answers, only: [:create, :destroy, :edit, :update] do
+    resources :answers, only: [:new, :create, :destroy, :edit, :update] do
       get 'best' => 'answers#best'
     end
   end

@@ -10,5 +10,5 @@
 
 <h2>質問履歴</h2>
 <% @user.questions.each do |question| %>
-  <%= link_to "#{question.title}", question_path(question.user_id) %>
+  <%= link_to "#{question.title}", question_path(question.id) %>
 <% end %>
