@@ -3,14 +3,14 @@
   <% @notifications.each do |notification| %>
     <%= attachment_image_tag notification.visiter, :user_image, :fill, 100, 100, format: 'jpeg', fallback:"unnamed.png", size:'100x100' %>
 
+    <%= link_to "#{notification.visiter.name}", user_path(notification.visiter.id) %>
     <% case notification.action %>
       <% when 'answer' then %>
-        <%= link_to "#{notification.visiter.name}", question_path(notification.question_id) %>
         <span>が回答しました</span>
       <% when 'best' then %>
-        <%= link_to "#{notification.question.title}", question_path(notification.question_id) %>
-        <span>での回答がベストアンサーに選ばれました</span>
+        <span>からベストアンサーに選ばれました</span>
     <% end %>
+    <%= link_to "#{notification.question.title}", question_path(notification.question_id) %><br>
 
   <% end %>
 <% else %>
