@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'questions#index'
+  resources :notifications, only: [:index]
   resources :users, only: [:show, :edit, :update, :destroy] do
     get 'add_new_point' => 'users#add_new_point'
     post 'add_point' => 'users#add_point'
