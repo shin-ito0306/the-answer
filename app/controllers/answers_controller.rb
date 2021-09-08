@@ -40,10 +40,10 @@ class AnswersController < ApplicationController
 
   def best
     question = Question.find(params[:question_id])
-    if question.answers.where(best_answer: 1) == nil
+    @answer = Answer.find(params[:answer_id])
+    if question.answers.where(best_answer: 1) == nil && @answer.user_id == question.user_id
       redirect_to question_path(params[:question_id])
     else
-      @answer = Answer.find(params[:answer_id])
       @answer.update(best_answer: 1)
       question.user.update(point: question.user.point -= question.reword_point)
       @answer.user.update(point: @answer.user.point += question.reword_point)
