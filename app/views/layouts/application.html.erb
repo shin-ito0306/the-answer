@@ -28,7 +28,8 @@
       </li>
 
       <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.select :search_kind, ['受付中', '解決済', '未解決', '未回答'], :prompt => "検索の種類" %>
+        <%= f.select :search_kind, ['受付中', '解決済', '未回答'], :prompt => "検索の種類" %>
+        <%= f.search_field :keyword %>
         <%= f.submit "検索" %>
       <% end %>
     <% else %>
