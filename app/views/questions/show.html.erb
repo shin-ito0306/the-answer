@@ -23,8 +23,12 @@
     <% unless answer.best_answer %>
       <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
     <% end %>
-    <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
+    <% unless Question.left_joins(:answers).where(answers: {id: nil}) %>
+      <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
+    <% end %>
   <% end %>
 <% end %>
 
-<%= link_to '回答する', new_question_answer_path(@question.id) %>
+<% if @question.accepting %>
+  <%= link_to '回答する', new_question_answer_path(@question.id) %>
+<% end %>
