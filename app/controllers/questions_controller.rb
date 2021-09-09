@@ -39,7 +39,18 @@ class QuestionsController < ApplicationController
     question.destroy
     redirect_to questions_path
   end
-  
+
+  def search
+    if params[:search_kind] == "解決済"
+      @questions = Question.joins(:answers).where(answers: {best_answer: 1})
+    elsif params[:search_kind] == "未回答"
+      @questions = Question.left_joins(:answers).where(answers: {id: nil})
+    elsif params[:search_kind] == "未解決"
+      @questions = Question.left_joins(:answers).where(answers: {best_answer: 0}).or(Question.left_joins(:answers).where(answers: {id: nil}))
+    end
+
+  end
+
   private
   def question_params
     params.require(:question).permit(:title, :question_image, :content, :reword_point)
