@@ -45,7 +45,6 @@ class AnswersController < ApplicationController
       redirect_to question_path(params[:question_id])
     else
       @answer.update(best_answer: 1)
-      question.update(accepting: false)
       question.user.update(point: question.user.point -= question.reword_point)
       @answer.user.update(point: @answer.user.point += question.reword_point)
       notification = current_user.active_notifications.new(visited_id: @answer.user_id, question_id: @answer.question_id, action: "best")
