@@ -42,13 +42,13 @@ class QuestionsController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @questions = Question.where("title LIKE ?", "%#{params[:keyword]}%")
+      @questions = Question.search_keyword(params[:keyword])
     elsif params[:search_kind] == "解決済"
-      @questions = Question.joins(:answers).where(answers: {best_answer: 1})
+      @questions = Question.search_resolved
     elsif params[:search_kind] == "未回答"
-      @questions = Question.left_joins(:answers).where(answers: {id: nil})
+      @questions = Question.search_unanswered
     elsif params[:search_kind] == "受付中"
-      @questions = Question.left_joins(:answers).where(answers: {best_answer: 0}).or(Question.left_joins(:answers).where(answers: {id: nil}))
+      @questions = Question.left_joins(:answers).where(answers: {best_answer: false})
     end
 
   end

@@ -4,4 +4,20 @@ class Question < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   attachment :question_image
+
+  def self.search_keyword(keyword)
+    Question.where("title LIKE ?", "%#{keyword}%")
+  end
+
+  def self.search_resolved
+    Question.joins(:answers).where(answers: {best_answer: 1})
+  end
+
+  def self.search_unanswered
+    Question.left_joins(:answers).where(answers: {id: nil})
+  end
+
+  def self.search_accepting
+    Question.left_joins(:answers).where(answers: {best_answer: 0}).or(Question.left_joins(:answers).where(answers: {id: nil}))
+  end
 end
