@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+
   def index
     @questions = Question.all
   end
@@ -43,13 +44,16 @@ class QuestionsController < ApplicationController
   def search
     if params[:keyword].present?
       @questions = Question.search_keyword(params[:keyword])
-    elsif params[:search_kind] == "解決済"
+    end
+    case params[:search_kind]
+    when "解決済"
       @questions = Question.search_resolved
-    elsif params[:search_kind] == "未回答"
+    when "未回答"
       @questions = Question.search_unanswered
-    elsif params[:search_kind] == "受付中"
+    when "受付中"
       @questions = Question.search_accepting
     end
+
   end
 
   def update_accepting
