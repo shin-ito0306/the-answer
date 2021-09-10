@@ -3,10 +3,23 @@
   <p><%= @user.point %>pt</p>
 
   <h3>追加ポイント</h3>
-  <%= f.number_field :point %>
+  <%= f.number_field :point, :onchange => "calc_point(this.form, #{@user.point})" %>
 
+  <h3>追加後の合計ポイント</h3>
+  <p id="added_total_point">pt</p>
+
+  <h3>購入金額</h3>
+  <p id="buy_money">円</p>
 
   <%= f.submit 'ポイント追加' %>
 
 
   <% end %>
+
+  <script>
+    function calc_point(add_point, current_point) {
+      var a = Number(add_point.point.value) + Number(current_point)
+      document.getElementById('added_total_point').innerHTML = a + "pt"
+      document.getElementById('buy_money').innerHTML = Number(add_point.point.value) + "円"
+    }
+  </script>
