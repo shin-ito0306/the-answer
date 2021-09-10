@@ -1,0 +1,5 @@
+<% questions.each do |question| %>
+  <%= question.user.name %>
+  <%= link_to "#{question.title}", question_path(question.id) %>
+  <%= attachment_image_tag question.user, :user_image %>
+<% end %>

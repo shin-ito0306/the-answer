@@ -1,0 +1,11 @@
+<%= question.user.name %>
+<%= question.title %>
+<%= attachment_image_tag question, :question_image %>
+<%= question.content %>
+<%= question.reword_point %>
+<% if question.user.id == current_user.id %>
+  <% unless question.answers.where(best_answer: 1) %>
+    <%= link_to "削除", question_path(question.id), method: :delete %>
+  <% end %>
+  <%= link_to "編集", edit_question_path(question.id) %>
+<% end %>
