@@ -1,14 +1,4 @@
-<%= @question.user.name %>
-<%= @question.title %>
-<%= attachment_image_tag @question, :question_image %>
-<%= @question.content %>
-<%= @question.reword_point %>
-<% if @question.user.id == current_user.id %>
-  <% unless @question.answers.where(best_answer: 1) %>
-    <%= link_to "削除", question_path(@question.id), method: :delete %>
-  <% end %>
-  <%= link_to "編集", edit_question_path(@question.id) %>
-<% end %>
+<%= render "questions/detail", question: @question %>
 
 <h3>回答</h3>
 <% @question.answers.each do |answer| %>
@@ -22,13 +12,11 @@
   <% if answer.user_id == current_user.id %>
     <% unless answer.best_answer %>
       <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
-    <% end %>
-    <% unless Question.left_joins(:answers).where(answers: {id: nil}) %>
       <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
     <% end %>
   <% end %>
 <% end %>
 
-<% if @question.accepting %>
+<% unless @question.answers.where(best_answer: 1).present? %>
   <%= link_to '回答する', new_question_answer_path(@question.id) %>
 <% end %>
