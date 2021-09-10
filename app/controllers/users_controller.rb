@@ -21,9 +21,9 @@ class UsersController < ApplicationController
   end
 
   def add_point
-    @user = User.find(params[:user_id])
-    point = params[:point].to_i + @user.point
-    if @user.update(point: point)
+    @user = User.find(current_user.id)
+    total_point = params[:point].to_i + @user.point
+    if @user.update(point: total_point)
       redirect_to user_path(@user.id)
     else
       render :edit
