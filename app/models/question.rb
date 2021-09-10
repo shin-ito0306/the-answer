@@ -18,6 +18,6 @@ class Question < ApplicationRecord
   end
 
   def self.search_accepting
-    Question.left_joins(:answers).where(answers: {best_answer: 0}).or(Question.left_joins(:answers).where(answers: {id: nil}))
+    Question.where(accepting: true)
   end
 end

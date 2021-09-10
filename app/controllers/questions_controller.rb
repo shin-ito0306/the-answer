@@ -48,9 +48,19 @@ class QuestionsController < ApplicationController
     elsif params[:search_kind] == "未回答"
       @questions = Question.search_unanswered
     elsif params[:search_kind] == "受付中"
-      @questions = Question.left_joins(:answers).where(answers: {best_answer: false})
+      @questions = Question.search_accepting
     end
+  end
 
+  def update_accepting
+    @question = Question.find(params[:question_id])
+    if @question.user_id == current_user.id
+      if @question.accepting
+        @question.update(accepting: false)
+      else
+        @question.update(accepting: true)
+      end
+    end
   end
 
   private

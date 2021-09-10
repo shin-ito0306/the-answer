@@ -1,0 +1,7 @@
+<div class="accepting-<%= question.id %>">
+  <% if question.accepting == true %>
+    <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true %>
+  <% else %>
+    <%= link_to "受付再開", question_update_accepting_path(@question.id), remote:true %>
+  <% end %>
+</div>

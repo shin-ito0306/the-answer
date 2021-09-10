@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'unsubscribe' => 'users#unsubscribe'
   end
   resources :questions do
+    get 'update_accepting' => 'questions#update_accepting'
     resources :answers, only: [:new, :create, :destroy, :edit, :update] do
       get 'best' => 'answers#best'
     end
