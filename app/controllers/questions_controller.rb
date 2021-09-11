@@ -44,6 +44,8 @@ class QuestionsController < ApplicationController
   def search
     if params[:keyword].present?
       @questions = Question.search_keyword(params[:keyword])
+    else
+      redirect_to questions_path
     end
     case params[:search_kind]
     when "解決済"
