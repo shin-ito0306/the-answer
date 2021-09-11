@@ -42,19 +42,21 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    if params[:keyword].present?
+    if params[:keyword].present? || (params[:keyword].present? && params[:search_kind].present?)
       @questions = Question.search_keyword(params[:keyword])
+    elsif params[:search_kind].present?
+      case params[:search_kind]
+      when "解決済"
+        @questions = Question.search_resolved
+      when "未回答"
+        @questions = Question.search_unanswered
+      when "受付中"
+        @questions = Question.search_accepting
+      end
     else
       redirect_to questions_path
     end
-    case params[:search_kind]
-    when "解決済"
-      @questions = Question.search_resolved
-    when "未回答"
-      @questions = Question.search_unanswered
-    when "受付中"
-      @questions = Question.search_accepting
-    end
+
 
   end
 
