@@ -32,22 +32,16 @@ class AnswersController < ApplicationController
 
   def destroy
     Answer.find(params[:id]).destroy
-    @question = Question.find(params[:question_id])
     redirect_to question_path(params[:question_id])
   end
 
   def best
     question = Question.find(params[:question_id])
     @answer = Answer.find(params[:answer_id])
-    if question.answers.where(best_answer: 1) == nil && @answer.user_id == question.user_id
+    if question.answers.where(best_answer: 1).blank? && @answer.user_id != question.user_id
+      @answer.choose_by_current_user!(current_user)
       redirect_to question_path(params[:question_id])
     else
-      @answer.update(best_answer: 1)
-      question.update(accepting: false)
-      question.user.update(point: question.user.point -= question.reword_point)
-      @answer.user.update(point: @answer.user.point += question.reword_point)
-      notification = current_user.active_notifications.new(visited_id: @answer.user_id, question_id: @answer.question_id, action: "best")
-      notification.save if notification.valid?
       redirect_to question_path(params[:question_id])
     end
   end

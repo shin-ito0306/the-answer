@@ -25,7 +25,7 @@ class Question < ApplicationRecord
     ActiveRecord::Base.transaction do
       answer = current_user.answers.new(answer_content: answer_content, question_id: id)
       answer.save!
-      create_notification_answer!(current_user, user_id, nil)
+      create_notification_answer!(current_user, user_id, id)
     end
   rescue ActiveRecord::RecordInvalid
     false
