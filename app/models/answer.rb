@@ -15,6 +15,10 @@ class Answer < ApplicationRecord
     false
   end
 
+  def current_user?(current_user)
+    user_id == current_user.id
+  end
+
 private
 
   def  create_notification_best_answer!(current_user, answer_user_id, question_id)

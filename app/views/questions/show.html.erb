@@ -5,11 +5,11 @@
   <%= answer.user.name %>
   <% if answer.best_answer %>
     <p>ベストアンサー!</p>
-  <% elsif (@question.user_id == current_user.id) && (@question.user_id != answer.user_id) && (@question.answers.where(best_answer: 1).count == 0) %>
+  <% elsif @question.current_user?(current_user) && !@question.answer_user?(answer.user_id) && @question.have_best_answer? %>
     <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: @question.id, answer_id: answer.id) %>
   <% end %>
   <%= answer.answer_content %>
-  <% if answer.user_id == current_user.id %>
+  <% if answer.current_user?(current_user) %>
     <% unless answer.best_answer %>
       <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
       <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
@@ -17,6 +17,6 @@
   <% end %>
 <% end %>
 
-<% unless @question.answers.where(best_answer: 1).present? %>
+<% if @question.accepting %>
   <%= link_to '回答する', new_question_answer_path(@question.id) %>
 <% end %>
