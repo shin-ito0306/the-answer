@@ -6,15 +6,13 @@ class AnswersController < ApplicationController
   end
 
   def create
-    question = Question.find(params[:question_id])
-    answer = current_user.answers.new(answer_params)
-    answer.question_id = question.id
-    if answer.save
-      notification = current_user.active_notifications.new(visited_id: question.user_id, question_id: answer.question_id, action: "answer")
-      notification.save if notification.valid?
-      redirect_to question_path(question.id)
+    @question = Question.find(params[:question_id])
+    if @question.answer_by_current_user!(current_user, answer_params[:answer_content])
+      redirect_to question_path(@question.id)
     else
-      render question_path(question.id)
+      @answer = Answer.new
+      flash[:alert] = "問題が発生しました"
+      render :new
     end
   end
 
