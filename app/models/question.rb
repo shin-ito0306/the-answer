@@ -21,6 +21,10 @@ class Question < ApplicationRecord
     Question.where(accepting: true)
   end
 
+  def current_user?(current_user)
+    user_id == current_user.id
+  end
+
   def answer_by_current_user!(current_user, answer_content)
     ActiveRecord::Base.transaction do
       answer = current_user.answers.new(answer_content: answer_content, question_id: id)
