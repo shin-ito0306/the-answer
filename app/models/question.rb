@@ -5,6 +5,11 @@ class Question < ApplicationRecord
 
   attachment :question_image
 
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :reword_point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+  validates :accepting, inclusion: { in: [true, false] }
+
   def self.search_keyword(keyword)
     Question.where("title LIKE ?", "%#{keyword}%")
   end
@@ -20,7 +25,7 @@ class Question < ApplicationRecord
   def self.search_accepting
     Question.where(accepting: true)
   end
-  
+
   def have_best_answer?
     answers.where(best_answer: 1).blank?
   end
