@@ -5,9 +5,9 @@
 
     <%= link_to "#{notification.visiter.name}", user_path(notification.visiter.id) %>
     <% case notification.action %>
-      <% when 'answer' then %>
+      <% when 'answer' %>
         <span>が回答しました</span>
-      <% when 'best' then %>
+      <% when 'best' %>
         <span>からベストアンサーに選ばれました</span>
     <% end %>
     <%= link_to "#{notification.question.title}", question_path(notification.question_id) %><br>
