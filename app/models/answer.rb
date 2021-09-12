@@ -3,6 +3,9 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_many :notifications, dependent: :destroy
 
+  validates :answer_content, presence: true
+  validates :best_answer, inclusion: { in: [true, false] }
+
   def choose_by_current_user!(current_user)
     ActiveRecord::Base.transaction do
       self.update!(best_answer: true)

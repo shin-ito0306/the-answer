@@ -22,10 +22,11 @@ class AnswersController < ApplicationController
   end
 
   def update
-    answer = Answer.find(params[:id])
-    if answer.update(answer_params)
+    @answer = Answer.find(params[:id])
+    if @answer.update(answer_params)
       redirect_to question_path(params[:question_id])
     else
+      @question = Question.find(params[:question_id])
       render :edit
     end
   end

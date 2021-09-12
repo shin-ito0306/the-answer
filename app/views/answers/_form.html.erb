@@ -1,3 +1,4 @@
+<%= render "layouts/error_message", object: answer %>
 <%= form_with model:[question, answer], local:true do |f| %>
   <%= f.text_area :answer_content, placeholder: "回答をここに記入" %>
   <%= f.submit "保存" %>

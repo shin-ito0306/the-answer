@@ -1,3 +1,4 @@
+<%= render "layouts/error_message", object: @user %>
 <%= form_with url: user_add_point_path(@user.id), local:true do |f| %>
   <h3>現在のポイント</h3>
   <p><%= @user.point %>pt</p>
