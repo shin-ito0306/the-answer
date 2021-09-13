@@ -2,5 +2,9 @@
   <div class="row">
     <%= render "questions/detail", question: @question %>
   </div>
-    <%= render "answers/form", question: @question, answer: @answer %>
+  <div class="row justify-content-center">
+    <div class="col-7 text-center">
+      <%= render "answers/form", question: @question, answer: @answer %>
+    </div>
+  </div>
 </div>
