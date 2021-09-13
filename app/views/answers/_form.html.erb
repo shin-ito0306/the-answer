@@ -1,5 +1,7 @@
-<%= render "layouts/error_message", object: answer %>
 <%= form_with model:[question, answer], local:true do |f| %>
-  <%= f.text_area :answer_content, placeholder: "回答をここに記入" %>
-  <%= f.submit "保存" %>
+  <%= render "layouts/error_message", object: answer %>
+  <div class="form-group">
+    <%= f.text_area :answer_content, placeholder: "回答をここに記入", class: "form-control", rows: "5" %>
+  </div>
+  <%= f.submit "回答" %>
 <% end %>

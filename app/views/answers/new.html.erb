@@ -1,3 +1,11 @@
-<%= render "questions/detail", question: @question %>
+<div class="container">
+  <div class="row">
+    <%= render "questions/detail", question: @question %>
+  </div>
+  <div class="row">
+    <div class="col-10 text-center">
+      <%= render "answers/form", question: @question, answer: @answer %>
+    </div>
 
-<%= render "answers/form", question: @question, answer: @answer %>
+  </div>
+</div>
