@@ -37,7 +37,7 @@ class Question < ApplicationRecord
     answers.where(best_answer: 1).blank?
   end
 
-  def current_user?(current_user)
+  def written_by?(current_user)
     user_id == current_user.id
   end
 

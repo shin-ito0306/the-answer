@@ -1,9 +1,9 @@
 <% if question.have_best_answer? %>
-  <div class="accepting-<%= question.id %>">
+  <span class="accepting-<%= question.id %>">
     <% if question.accepting %>
-      <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true %>
+      <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
     <% else %>
-      <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true %>
+      <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
     <% end %>
-  </div>
+  </span>
 <% end %>
