@@ -9,6 +9,13 @@ class Question < ApplicationRecord
   validates :content, presence: true
   validates :reword_point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :accepting, inclusion: { in: [true, false] }
+  validate :check_reword_point
+
+  def check_reword_point
+    if user.point < reword_point
+      errors.add(:reword_point,"は所持ポイントより少なくしてください")
+    end
+  end
 
   def self.search_keyword(keyword)
     Question.where("title LIKE ?", "%#{keyword}%")
