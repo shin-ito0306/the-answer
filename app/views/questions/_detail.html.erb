@@ -3,7 +3,7 @@
 <%= attachment_image_tag question, :question_image %>
 <%= question.content %>
 <%= question.reword_point %>
-<% if question.user.id == current_user.id %>
+<% if question.current_user?(current_user) %>
   <%= render "questions/accepting", question: @question %>
   <% unless question.answers.where(best_answer: 1) %>
     <%= link_to "削除", question_path(question.id), method: :delete %>

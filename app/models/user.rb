@@ -14,4 +14,8 @@ class User < ApplicationRecord
 
   validates :point, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :name, presence: true
+
+  def current_user?(current_user)
+    self == current_user
+  end
 end
