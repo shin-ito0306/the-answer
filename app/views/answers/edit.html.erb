@@ -1,3 +1,6 @@
-<%= render "questions/detail", question: @question %>
-
-<%= render "answers/form", question: @question, answer: @answer %>
+<div class="container">
+  <div class="row">
+    <%= render "questions/detail", question: @question %>
+  </div>
+    <%= render "answers/form", question: @question, answer: @answer %>
+</div>

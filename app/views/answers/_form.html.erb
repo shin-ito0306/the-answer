@@ -1,7 +1,11 @@
-<%= form_with model:[question, answer], local:true do |f| %>
-  <%= render "layouts/error_message", object: answer %>
-  <div class="form-group">
-    <%= f.text_area :answer_content, placeholder: "回答をここに記入", class: "form-control", rows: "5" %>
+<div class="row justify-content-center">
+  <div class="col-7 text-center">
+    <%= form_with model:[question, answer], local:true do |f| %>
+      <%= render "layouts/error_message", object: answer %>
+      <div class="form-group">
+        <%= f.text_area :answer_content, placeholder: "回答をここに記入", class: "form-control", rows: "5" %>
+      </div>
+      <%= f.submit "回答" %>
+    <% end %>
   </div>
-  <%= f.submit "回答" %>
-<% end %>
+</div>
