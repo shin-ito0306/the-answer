@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
-  validates :point, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+  validates :point, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :name, presence: true
 
   def current_user?(current_user)
