@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
-    <%= render "questions/detail", question: @question %>
-  </div>
-  <div class="row justify-content-center">
+    <div class="col-7">
+      <%= render "questions/detail", question: @question %>
+    </div>
     <div class="col-7 text-center">
       <%= render "answers/form", question: @question, answer: @answer %>
     </div>
