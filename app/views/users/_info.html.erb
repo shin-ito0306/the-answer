@@ -1,8 +1,26 @@
-<%= attachment_image_tag user, :user_image, :fill, 100, 100, format: 'jpeg', fallback:"unnamed.png", size: "300x300" %>
-<%= user.name %><br>
-<%= user.introduction %>
-<%= user.point %>
+<h3>ユーザー情報</h3>
+<div class="text-center">
+  <%= attachment_image_tag user, :user_image, :fill, 200, 200, format: 'jpeg', fallback:"unnamed.png", size: "200x200"%>
+</div>
+
+<table class="table-responsive table-bordered">
+  <tbody>
+    <tr>
+      <!--users<th>のみstyleシートに記載-->
+      <th>名前</th>
+      <th><%= user.name %></th>
+    </tr>
+    <tr>
+      <th>ポイント</th>
+      <th><%= user.point %></th>
+    </tr>
+    <tr>
+      <th>紹介文</th>
+      <th><%= user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
 <% if user.current_user?(current_user) %>
-  <%= link_to "マイページ編集", edit_user_path(current_user.id) %>
-  <%= link_to "ポイント追加", user_add_new_point_path(current_user.id) %>
+  <%= link_to "マイページ編集", edit_user_path(current_user.id), class: "btn btn-outline-success my-2 col" %>
+  <%= link_to "ポイント追加", user_add_new_point_path(current_user.id), class: "btn btn-outline-success col" %>
 <% end %>
