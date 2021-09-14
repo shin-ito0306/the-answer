@@ -1,23 +1,59 @@
-<%= render "users/info", user: @question.user %>
-<%= render "questions/detail", question: @question %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4">
+      <%= render "users/info", user: @question.user %>
+    </div>
+    <div class="col-8">
+      <div class="mb-5">
+        <%= render "questions/detail", question: @question %>
+      </div>
+      <h3>回答</h3>
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th>ユーザー</th>
+            <th>回答</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @question.answers.each do |answer| %>
+            <tr>
+              <td class="text-truncate", style="max-width: 40px">
+                <%= link_to user_path(answer.user_id) do %>
+                  <%= attachment_image_tag answer.user, :user_image, :fill, 40, 40, format: 'jpeg', fallback:"unnamed.png", size: "40x40"%><br>
+                  <%= answer.user.name %>
+                <% end %>
+              </td>
+              <td class="text-truncate", style="max-width: 200px"><%= answer.answer_content %></td>
+              <td>
+                <% if answer.best_answer %>
+                  <i class="far fa-check-circle fa-2x text-danger"></i>
+                <% elsif @question.written_by?(current_user) && !@question.answer_user?(answer.user_id) && !@question.have_best_answer? %>
+                  <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: @question.id, answer_id: answer.id),
+                                                                                                class: "btn btn-outline-danger",
+                                                                                                data: { confirm: "本当によろしいですか？"}
+                  %>
+                <% end %>
+                <% if answer.current_user?(current_user) %>
+                  <% unless answer.best_answer %>
+                    <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete, class: "btn btn-outline-danger" %>
+                    <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id), class: "btn btn-outline-warning" %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<h3>回答</h3>
-<% @question.answers.each do |answer| %>
-  <%= answer.user.name %>
-  <% if answer.best_answer %>
-    <p>ベストアンサー!</p>
-  <% elsif @question.written_by?(current_user) && !@question.answer_user?(answer.user_id) && !@question.have_best_answer? %>
-    <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: @question.id, answer_id: answer.id) %>
-  <% end %>
-  <%= answer.answer_content %>
-  <% if answer.current_user?(current_user) %>
-    <% unless answer.best_answer %>
-      <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete %>
-      <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id) %>
-    <% end %>
-  <% end %>
-<% end %>
+      <div class="row justify-content-center">
+        <% if @question.accepting %>
+          <%= link_to '回答する', new_question_answer_path(@question.id), class: "btn btn-success " %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if @question.accepting %>
-  <%= link_to '回答する', new_question_answer_path(@question.id) %>
-<% end %>
+
