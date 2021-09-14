@@ -5,14 +5,14 @@
       <% elsif question.have_best_answer? %>
         <i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i>
       <% else %>
-        <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
+        <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-danger" %>
       <% end %>
     </span>
 <% else %>
     <% if question.accepting %>
       <span>受付中</span>
     <% elsif question.have_best_answer? %>
-      <span><i class="fas fa-check-square fas-2x", style="vertical-align: middle;"></span>
+      <span><i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i></span>
     <% else %>
       <span>受付中断中</span>
     <% end %>
