@@ -4,10 +4,11 @@
       <%= render "users/info", user: @question.user %>
     </div>
     <div class="col-8">
+      <h2 class="mb-4">質問</h2>
       <div class="mb-5">
         <%= render "questions/detail", question: @question %>
       </div>
-      <h3>回答</h3>
+      <h2 class="mb-4">回答</h2>
       <table class="table table-striped text-center">
         <thead>
           <tr>
