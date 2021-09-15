@@ -1,1 +1,13 @@
-<%= render "questions/index", questions: @questions %>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= render "users/info", user: current_user %>
+    </div>
+    <div class="col-8 text-center">
+      <%= render "questions/index", questions: @questions %>
+    </div>
+  </div>
+</div>
+
+
+

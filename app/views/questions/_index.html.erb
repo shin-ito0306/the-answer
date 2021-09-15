@@ -1,5 +1,20 @@
-<% questions.each do |question| %>
-  <%= question.user.name %>
-  <%= link_to "#{question.title}", question_path(question.id) %>
-  <%= attachment_image_tag question.user, :user_image %>
-<% end %>
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">題名</th>
+      <th scope="col">報酬</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">回答数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% questions.each do |question| %>
+      <tr>
+        <td><%= link_to "#{question.title}", question_path(question.id) %></td>
+        <td><%= question.reword_point %></td>
+        <td><%= render "questions/accepting", question: question %></td>
+        <td><%= question.answers.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

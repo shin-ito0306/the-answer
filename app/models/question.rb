@@ -34,15 +34,19 @@ class Question < ApplicationRecord
   end
 
   def have_best_answer?
-    answers.where(best_answer: 1).blank?
+    answers.where(best_answer: 1).present?
   end
 
-  def current_user?(current_user)
+  def written_by?(current_user)
     user_id == current_user.id
   end
 
   def answer_user?(answer_user_id)
     user_id == answer_user_id
+  end
+
+  def have_answers?
+    answers.present?
   end
 
   def answer_by_current_user!(current_user, answer_content)

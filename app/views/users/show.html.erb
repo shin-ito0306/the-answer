@@ -1,12 +1,14 @@
-<h2>マイページ</h2>
-<%= attachment_image_tag @user, :user_image, :fill, 100, 100, format: 'jpeg', fallback:"unnamed.png", size: "300x300" %>
-<%= @user.name %><br>
-<%= @user.introduction %>
-<%= @user.point %>
-<% if @user.current_user?(current_user) %>
-  <%= link_to "マイページ編集", edit_user_path(current_user.id) %>
-  <%= link_to "ポイント追加", user_add_new_point_path(current_user.id) %>
-<% end %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4">
+      <h2 class="mb-4">ユーザー情報</h2>
+      <%= render "users/info", user: @user %>
+    </div>
+    <div class="col-8">
+      <h2 class="mb-4">質問履歴</h2>
+      <%= render "questions/index", questions: @user.questions %>
+    </div>
+  </div>
+</div>
 
-<h2>質問履歴</h2>
-<%= render "questions/index", questions: @user.questions %>
+

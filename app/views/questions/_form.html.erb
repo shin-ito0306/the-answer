@@ -1,16 +1,22 @@
-<%= render "layouts/error_message", object: question %>
 <%= form_with model:question, local: true do |f| %>
-  <h4>題名</h4>
-  <%= f.text_field :title %>
+  <%= render "layouts/error_message", object: question %>
+  <div class="form-group">
+    <h4>題名</h4>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <h4>画像</h4>
-  <%= f.attachment_field :question_image %>
+  <div class="form-group">
+    <h4>画像</h4>
+    <%= f.attachment_field :question_image %>
+  </div>
+  <div class="form-group">
+    <h4>質問内容</h4>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <h4>報酬ポイント</h4>
+    <%= f.number_field :reword_point, class: "form-control" %>
+  </div>
 
-  <h4>質問内容</h4>
-  <%= f.text_area :content %>
-
-  <h4>報酬ポイント</h4>
-  <%= f.number_field :reword_point %>
-
-  <%= f.submit "投稿" %>
+  <%= f.submit "投稿", class: "btn btn-outline-primary form-control" %>
 <% end %>
