@@ -1,19 +1,7 @@
-<% if question.written_by?(current_user) %>
-    <span class="accepting-<%= question.id %>">
-      <% if question.accepting %>
-        <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
-      <% elsif question.have_best_answer? %>
-        <i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i>
-      <% else %>
-        <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-danger" %>
-      <% end %>
-    </span>
+<% if question.accepting %>
+  <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
+<% elsif question.have_best_answer? %>
+  <i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i>
 <% else %>
-    <% if question.accepting %>
-      <span>受付中</span>
-    <% elsif question.have_best_answer? %>
-      <span><i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i></span>
-    <% else %>
-      <span>受付中断中</span>
-    <% end %>
+  <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-danger" %>
 <% end %>

@@ -61,7 +61,7 @@ class QuestionsController < ApplicationController
   end
 
   def update_accepting
-    @question = Question.find(params[:question_id])
+    @question = Question.find_by(id: params[:question_id])
     if @question.written_by?(current_user)
       if @question.accepting
         @question.update(accepting: false)

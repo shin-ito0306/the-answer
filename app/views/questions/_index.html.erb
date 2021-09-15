@@ -12,7 +12,13 @@
       <tr>
         <td><%= link_to "#{question.title}", question_path(question.id) %></td>
         <td><%= question.reword_point %></td>
-        <td><%= render "questions/accepting", question: question %></td>
+        <% if question.written_by?(current_user) %>
+          <td class="accepting-<%= question.id %>">
+            <%= render "questions/accepting", question: question %>
+          </td>
+        <% else %>
+          <td><%= render "questions/accepting_text", question: question %></td>
+        <% end %>
         <td><%= question.answers.count %></td>
       </tr>
     <% end %>
