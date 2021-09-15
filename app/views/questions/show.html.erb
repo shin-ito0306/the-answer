@@ -1,6 +1,7 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-4">
+      <h2 class="mb-4">ユーザー情報</h2>
       <%= render "users/info", user: @question.user %>
     </div>
     <div class="col-8">
@@ -26,7 +27,7 @@
                   <%= answer.user.name %>
                 <% end %>
               </td>
-              <td class="text-truncate", style="max-width: 200px"><%= answer.answer_content %></td>
+              <td class="text-truncate", style="max-width: 200px"><%= link_to "#{answer.answer_content}", question_answer_path(question_id: answer.question_id, id: answer.id )%></td>
               <td>
                 <% if answer.best_answer %>
                   <i class="far fa-check-circle fa-2x text-danger"></i>
