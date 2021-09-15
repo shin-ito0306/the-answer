@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :questions do
     get 'update_accepting' => 'questions#update_accepting'
-    resources :answers, only: [:new, :create, :destroy, :edit, :update] do
+    resources :answers, only: [:show, :new, :create, :destroy, :edit, :update] do
       get 'best' => 'answers#best'
     end
   end
