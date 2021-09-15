@@ -1,0 +1,7 @@
+<% if question.accepting %>
+  <span>受付中</span>
+<% elsif question.have_best_answer? %>
+  <span><i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i></span>
+<% else %>
+  <span>受付中断中</span>
+<% end %>

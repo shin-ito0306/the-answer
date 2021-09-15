@@ -11,12 +11,6 @@ class Question < ApplicationRecord
   validates :accepting, inclusion: { in: [true, false] }
   validate :check_reword_point
 
-  def check_reword_point
-    if user.point < reword_point
-      errors.add(:reword_point,"は所持ポイントより少なくしてください")
-    end
-  end
-
   def self.search_keyword(keyword)
     Question.where("title LIKE ?", "%#{keyword}%")
   end
@@ -63,5 +57,11 @@ class Question < ApplicationRecord
   def create_notification_answer!(current_user, question_user_id, answer_question_id)
     notification = current_user.active_notifications.new(visited_id: question_user_id, question_id: answer_question_id, action: "answer")
     notification.save!
+  end
+
+  def check_reword_point
+    if user.point < reword_point
+      errors.add(:reword_point,"は所持ポイントより少なくしてください")
+    end
   end
 end
