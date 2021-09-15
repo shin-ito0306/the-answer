@@ -22,11 +22,16 @@ class UsersController < ApplicationController
 
   def add_point
     @user = User.find(current_user.id)
-    total_point = params[:point].to_i + @user.point
-    if @user.update(point: total_point)
-      redirect_to user_path(@user.id)
+    if params[:point].to_i > 0
+      total_point = params[:point].to_i + @user.point
+      if @user.update(point: total_point)
+        redirect_to user_path(@user.id)
+      else
+        render :add_new_point
+      end
     else
-      render :edit
+      flash[:alert] = "0ptより小さい数字は追加できません"
+      render :add_new_point
     end
   end
 
