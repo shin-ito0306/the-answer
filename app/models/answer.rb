@@ -22,6 +22,10 @@ class Answer < ApplicationRecord
     user_id == current_user.id
   end
 
+  def self.user_answers(user_id)
+    Answer.where(user_id: user_id)
+  end
+
 private
 
   def  create_notification_best_answer!(current_user, answer_user_id, question_id)

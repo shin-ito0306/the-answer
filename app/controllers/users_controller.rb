@@ -44,11 +44,11 @@ class UsersController < ApplicationController
   end
 
   def index_of_answers
-    @answers = Answer.where(user_id: params[:user_id])
+    @answers = Answer.user_answers(params[:user_id])
   end
 
   def index_of_questions
-    @questions = Question.where(user_id: params[:user_id])
+    @questions = Question.user_questions(params[:user_id])
   end
 
 

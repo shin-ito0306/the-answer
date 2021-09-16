@@ -27,6 +27,10 @@ class Question < ApplicationRecord
     Question.where(accepting: true)
   end
 
+  def self.user_questions(user_id)
+    Question.where(user_id: user_id)
+  end
+
   def have_best_answer?
     answers.where(best_answer: 1).present?
   end
