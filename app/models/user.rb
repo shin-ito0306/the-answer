@@ -18,4 +18,16 @@ class User < ApplicationRecord
   def current_user?(current_user)
     self == current_user
   end
+
+  def unchecked_notifications
+    passive_notifications.where(checked: false)
+  end
+
+  def checked_by_user
+    unchecked_notifications.update_all(checked: 1)
+  end
+
+  def have_unchecked_notification?
+    unchecked_notifications.present?
+  end
 end
