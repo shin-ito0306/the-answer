@@ -47,6 +47,10 @@ class Question < ApplicationRecord
     answers.present?
   end
 
+  def answered_count
+    answers.count
+  end
+
   def answer_by_current_user!(current_user, answer_content)
     ActiveRecord::Base.transaction do
       answer = current_user.answers.new(answer_content: answer_content, question_id: id)

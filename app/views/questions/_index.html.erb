@@ -19,7 +19,7 @@
         <% else %>
           <td><%= render "questions/accepting_text", question: question %></td>
         <% end %>
-        <td><%= question.answers.count %></td>
+        <td><%= question.answered_count %></td>
       </tr>
     <% end %>
   </tbody>
