@@ -4,6 +4,16 @@
       <h2 class="mb-4">質問</h2>
       <%= render "questions/detail", question: @answer.question %>
       <h2 class="border-bottom my-4">回答詳細</h2>
+      <div class="row mx-1 mb-1">
+        <%= link_to user_path(@answer.user_id) do %>
+          <%= attachment_image_tag @answer.user, :user_image, :fill, 40, 40, format: 'jpeg', fallback:"unnamed.png", size: "40x40"%>
+          <%= @answer.user.name %>
+        <% end %>
+        <span class="ml-auto my-2">
+          <%= render "answers/status", answer: @answer %>
+        </span>
+      </div>
+
       <div class="card">
         <div class="card-body">
           <%= @answer.answer_content %>
