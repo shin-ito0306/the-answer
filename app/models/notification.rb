@@ -7,4 +7,8 @@ class Notification < ApplicationRecord
 
   validates :action, presence: true
   validates :checked, inclusion: { in: [true, false] }
+
+  def confirmed_by_user
+    self.where(checked: 0).update_all(checked: 1)
+  end
 end
