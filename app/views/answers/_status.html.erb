@@ -1,0 +1,14 @@
+<% if answer.best_answer %>
+  <i class="far fa-check-circle fa-2x text-danger"></i>
+<% elsif answer.question.written_by?(current_user) && !answer.question.answer_user?(answer.user_id) && !answer.question.have_best_answer? %>
+  <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: answer.question_id, answer_id: answer.id),
+                                                                                class: "btn btn-outline-danger",
+                                                                                data: { confirm: "本当によろしいですか？"}
+  %>
+<% end %>
+<% if answer.current_user?(current_user) %>
+  <% unless answer.best_answer %>
+    <%= link_to '削除', question_answer_path(id: answer.id, question_id: answer.question_id), method: :delete, class: "btn btn-outline-danger" %>
+    <%= link_to '編集', edit_question_answer_path(id: answer.id, question_id: answer.question_id), class: "btn btn-outline-warning" %>
+  <% end %>
+<% end %>

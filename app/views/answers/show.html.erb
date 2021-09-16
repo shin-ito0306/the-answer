@@ -4,6 +4,9 @@
       <h2 class="mb-4">質問</h2>
       <%= render "questions/detail", question: @answer.question %>
       <h2 class="border-bottom my-4">回答詳細</h2>
+      <div class="text-right my-2">
+        <%= render "answers/status", answer: @answer %>
+      </div>
       <div class="card">
         <div class="card-body">
           <%= @answer.answer_content %>
