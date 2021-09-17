@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def have_unchecked_notification?
     unchecked_notifications.present?
   end
+
+  def received
+    passive_notifications.where.not(visiter_id: id).order(created_at: "DESC")
+  end
 end
