@@ -1,0 +1,31 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-7 my-5">
+      <h2 class="mb-4 border-bottom d-inline-block">ポイント追加フォーム</h2>
+        <%= form_with url: user_add_point_path(@user.id), local:true do |f| %>
+          <%= render "layouts/error_message", object: @user %>
+            <h4>現在のポイント</h4>
+            <p><%= @user.point %>pt</p>
+          <div class="form-group">
+            <h4>追加ポイント</h4>
+            <%= f.number_field :point, :onchange => "calc_point(this.form, #{@user.point})", class: "form-control col-5" %>
+          </div>
+            <h4>追加後の合計ポイント</h4>
+            <p id="added_total_point", class="form-control col-5">pt</p>
+            <h4>購入金額</h4>
+            <p id="buy_money", class="form-control col-5">円</p>
+
+          <%= f.submit 'ポイント追加', class: "btn btn-primary col-5" %>
+
+        <% end %>
+    </div>
+  </div>
+</div>
+
+  <script>
+    function calc_point(add_point, current_point) {
+      var a = Number(add_point.point.value) + Number(current_point)
+      document.getElementById('added_total_point').innerHTML = a + "pt"
+      document.getElementById('buy_money').innerHTML = Number(add_point.point.value) + "円"
+    }
+  </script>

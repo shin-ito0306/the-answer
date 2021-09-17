@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+ .fa-circle {
+   position: absolute;
+   padding-left: 5px;
+   padding-top: 4px;
+   color: #efa04c;
+ }

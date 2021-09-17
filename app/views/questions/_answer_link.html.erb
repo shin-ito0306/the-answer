@@ -1,0 +1,3 @@
+<% if @question.accepting %>
+  <%= link_to '回答する', new_question_answer_path(question.id), class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4">
+      <h2 class="mb-4">ユーザー情報</h2>
+      <%= render "users/info", user: current_user %>
+    </div>
+    <div class="col-8">
+      <h2 class="mb-4">質問一覧</h2>
+      <div class="text-center">
+        <%= render "questions/index", questions: @questions %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

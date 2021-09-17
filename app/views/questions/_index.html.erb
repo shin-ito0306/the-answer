@@ -1,0 +1,26 @@
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">題名</th>
+      <th scope="col">報酬</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">回答数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% questions.each do |question| %>
+      <tr>
+        <td><%= link_to "#{question.title}", question_path(question.id) %></td>
+        <td><%= question.reword_point %></td>
+        <% if question.written_by?(current_user) %>
+          <td class="accepting-<%= question.id %>">
+            <%= render "questions/accepting", question: question %>
+          </td>
+        <% else %>
+          <td><%= render "questions/accepting_text", question: question %></td>
+        <% end %>
+        <td><%= question.answered_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,19 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4">
+      <h2 class="mb-4">ユーザー情報</h2>
+      <%= render "users/info", user: @question.user %>
+    </div>
+    <div class="col-8">
+      <h2 class="mb-4">質問</h2>
+      <div class="mb-5">
+        <%= render "questions/detail", question: @question %>
+      </div>
+      <h2 class="mb-4">回答</h2>
+      <%= render "answers/index", answers: @question.answers %>
+      <div class="row justify-content-center submit">
+        <%= render "questions/answer_link", question: @question %>
+      </div>
+    </div>
+  </div>
+</div>

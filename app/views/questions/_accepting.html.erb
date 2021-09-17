@@ -1,0 +1,7 @@
+<% if question.accepting %>
+  <%= link_to "受付中断", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-info" %>
+<% elsif question.have_best_answer? %>
+  <i class="fas fa-check-square fa-2x", style="vertical-align: middle;"></i>
+<% else %>
+  <%= link_to "受付再開", question_update_accepting_path(question.id), remote:true, class: "btn btn-outline-danger" %>
+<% end %>

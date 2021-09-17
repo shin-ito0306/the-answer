@@ -1,0 +1,21 @@
+<!--ユーザーページ用-->
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th>回答</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% answers.each do |answer| %>
+      <tr>
+        <td class="text-truncate", style="max-width: 200px">
+          <%= link_to "#{answer.answer_content}", question_answer_path(question_id: answer.question_id, id: answer.id )%>
+        </td>
+        <td>
+          <%= render "answers/status", answer: answer %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

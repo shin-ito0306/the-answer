@@ -1,0 +1,27 @@
+<h4 class="border-bottom"><%= question.title %></h4>
+<div class="text-right my-2">
+  <span class="">報酬<%= question.reword_point %>pt</span>
+  <% if question.written_by?(current_user) %>
+    <span class="accepting-<%= question.id %>">
+      <%= render "questions/accepting", question: question %>
+    </span>
+  <% else %>
+    <%= render "questions/accepting_text", question: question %>
+  <% end %>
+  <% if question.written_by?(current_user) && !question.have_answers? %>
+    <%= link_to "削除", question_path(question.id), method: :delete, class: "btn btn-outline-danger" %>
+    <%= link_to "編集", edit_question_path(question.id), class: "btn btn-outline-warning" %>
+  <% end %>
+</div>
+
+<div class="card mt-3">
+    <h5 class="card-header">質問内容</h5>
+  <div class="card-body">
+    <p class="card-text"><%= question.content %></p>
+  </div>
+</div>
+<div class="my-3 text-center">
+  <%= attachment_image_tag question, :question_image, :fill, 400, 400 %>
+</div>
+
+
