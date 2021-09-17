@@ -57,8 +57,6 @@ class QuestionsController < ApplicationController
     else
       redirect_to questions_path
     end
-
-
   end
 
   def update_accepting

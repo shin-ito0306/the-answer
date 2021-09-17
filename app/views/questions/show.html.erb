@@ -11,13 +11,12 @@
       </div>
       <h2 class="mb-4">回答</h2>
       <%= render "answers/index", answers: @question.answers %>
-      <div class="row justify-content-center">
-        <% if @question.accepting %>
-          <%= link_to '回答する', new_question_answer_path(@question.id), class: "btn btn-success " %>
-        <% end %>
+      <div class="row justify-content-center submit">
+        <%= render "questions/answer_link", question: @question %>
       </div>
     </div>
   </div>
 </div>
 
-
+<script>
+</script>
