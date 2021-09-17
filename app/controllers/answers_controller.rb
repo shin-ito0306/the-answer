@@ -7,6 +7,10 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @question = Question.find(params[:question_id])
+    unless @question.accepting
+      flash[:alert] = "受付中断中"
+      redirect_back(fallback_location: questions_path)
+    end
   end
 
   def create
