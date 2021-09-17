@@ -31,6 +31,10 @@ class Question < ApplicationRecord
     Question.where(user_id: user_id)
   end
 
+  def self.list
+    Question.all.order(created_at: 'DESC')
+  end
+
   def have_best_answer?
     answers.where(best_answer: 1).present?
   end

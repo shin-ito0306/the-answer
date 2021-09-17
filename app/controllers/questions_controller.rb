@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   include QuestionHandler
 
   def index
-    @questions = Question.all
+    @questions = Question.list
   end
 
   def show
