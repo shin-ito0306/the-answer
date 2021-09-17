@@ -6,7 +6,7 @@ class Answer < ApplicationRecord
   validates :answer_content, presence: true
   validates :best_answer, inclusion: { in: [true, false] }
 
-  def choose_by_current_user!(current_user)
+  def chosen_by_current_user!(current_user)
     ActiveRecord::Base.transaction do
       self.update!(best_answer: true)
       question.update!(accepting: false)
@@ -20,6 +20,10 @@ class Answer < ApplicationRecord
 
   def current_user?(current_user)
     user_id == current_user.id
+  end
+
+  def self.user_answers(user_id)
+    Answer.where(user_id: user_id)
   end
 
 private

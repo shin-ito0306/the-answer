@@ -27,6 +27,14 @@ class Question < ApplicationRecord
     Question.where(accepting: true)
   end
 
+  def self.user_questions(user_id)
+    Question.where(user_id: user_id)
+  end
+
+  def self.list
+    Question.all.order(created_at: 'DESC')
+  end
+
   def have_best_answer?
     answers.where(best_answer: 1).present?
   end
@@ -41,6 +49,10 @@ class Question < ApplicationRecord
 
   def have_answers?
     answers.present?
+  end
+
+  def answered_count
+    answers.count
   end
 
   def answer_by_current_user!(current_user, answer_content)

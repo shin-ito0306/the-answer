@@ -1,7 +1,8 @@
 class QuestionsController < ApplicationController
+  include QuestionHandler
 
   def index
-    @questions = Question.all
+    @questions = Question.list
   end
 
   def show
@@ -42,7 +43,7 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    if params[:keyword].present? || (params[:keyword].present? && params[:search_kind].present?)
+    if have_keyword?(params[:keyword], params[:search_kind])
       @questions = Question.search_keyword(params[:keyword])
     elsif params[:search_kind].present?
       case params[:search_kind]
@@ -56,8 +57,6 @@ class QuestionsController < ApplicationController
     else
       redirect_to questions_path
     end
-
-
   end
 
   def update_accepting
