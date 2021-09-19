@@ -1,29 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-*
-
 # The Answer
 
 ## 概要
@@ -33,14 +7,26 @@ Things you may want to cover:
 質問者からポイントを獲得することが出来ます。
 <img width="1439" alt="スクリーンショット 2021-09-19 12 58 28" src="https://user-images.githubusercontent.com/65806493/133914951-06529bd3-d3fe-458d-9ae3-46cbc4314597.png">
 
+## 設計図
+<img width="548" alt="スクリーンショット 2021-09-19 13 21 27" src="https://user-images.githubusercontent.com/65806493/133915378-0dc22241-4ec1-4a40-bdb5-85eb139de66f.png">
+
+## 機能一覧
+- ユーザー登録、ユーザーログイン機能(devise)
+- 質問一覧機能
+- 質問機能
+  - 投稿
+  - 受付可否機能(ajax)
+  - ベストアンサー選択(ポイント減)
+- 回答機能
+  - 回答投稿
+  - ベストアンサーに選ばれる(ポイント増)
+- 通知機能
+- 検索機能
+  - 絞り込み検索
+
 ## 使用技術
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 設計図
-<img width="548" alt="スクリーンショット 2021-09-19 13 21 27" src="https://user-images.githubusercontent.com/65806493/133915378-0dc22241-4ec1-4a40-bdb5-85eb139de66f.png">
-
-## 機能一覧
