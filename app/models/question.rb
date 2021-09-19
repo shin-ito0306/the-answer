@@ -6,7 +6,7 @@ class Question < ApplicationRecord
   attachment :question_image
 
   validates :title, presence: true
-  validates :content, presence: true
+  validates :question_content, presence: true
   validates :reword_point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :accepting, inclusion: { in: [true, false] }
   validate :check_reword_point
@@ -32,7 +32,7 @@ class Question < ApplicationRecord
   end
 
   def self.list
-    Question.all.order(created_at: 'DESC')
+    Question.all.order(updated_at: 'DESC')
   end
 
   def have_best_answer?
@@ -43,8 +43,8 @@ class Question < ApplicationRecord
     user_id == current_user.id
   end
 
-  def answer_user?(answer_user_id)
-    user_id == answer_user_id
+  def answered_by?(user_id)
+    self.user_id == user_id
   end
 
   def have_answers?
@@ -55,6 +55,7 @@ class Question < ApplicationRecord
     answers.count
   end
 
+  # 回答投稿時の処理
   def answer_by_current_user!(current_user, answer_content)
     ActiveRecord::Base.transaction do
       answer = current_user.answers.new(answer_content: answer_content, question_id: id)
@@ -66,11 +67,14 @@ class Question < ApplicationRecord
   end
 
   private
-  def create_notification_answer!(current_user, question_user_id, answer_question_id)
-    notification = current_user.active_notifications.new(visited_id: question_user_id, question_id: answer_question_id, action: "answer")
+  
+  # 回答時の通知
+  def create_notification_answer!(current_user, user_id, question_id)
+    notification = current_user.active_notifications.new(visited_id: user_id, question_id: question_id, action: "answer")
     notification.save!
   end
 
+  # 報酬ポイントが質問者の所持ポイントより多くしない為のバリデーション
   def check_reword_point
     if user.point < reword_point
       errors.add(:reword_point,"は所持ポイントより少なくしてください")

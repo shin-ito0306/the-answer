@@ -5,7 +5,8 @@ class Answer < ApplicationRecord
 
   validates :answer_content, presence: true
   validates :best_answer, inclusion: { in: [true, false] }
-
+  
+  # ベストアンサーを選んだ時の処理
   def chosen_by_current_user!(current_user)
     ActiveRecord::Base.transaction do
       self.update!(best_answer: true)
@@ -27,16 +28,19 @@ class Answer < ApplicationRecord
   end
 
 private
-
-  def  create_notification_best_answer!(current_user, answer_user_id, question_id)
+  
+  # ベストアンサーの通知
+  def  create_notification_best_answer!(current_user, user_id, question_id)
     notification = current_user.active_notifications.new(visited_id: user_id, question_id: question_id, action: "best")
     notification.save!
   end
 
+  # 質問者のポイントを引く
   def point_expense!(user, reword_point)
     user.update!(point: user.point -= reword_point)
   end
-
+  
+  # ベストアンサーをした回答者のポイントを増やす
   def point_income!(user, reword_point)
     user.update!(point: user.point += reword_point)
   end
