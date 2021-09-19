@@ -6,7 +6,7 @@ class Question < ApplicationRecord
   attachment :question_image
 
   validates :title, presence: true
-  validates :content, presence: true
+  validates :question_content, presence: true
   validates :reword_point, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   validates :accepting, inclusion: { in: [true, false] }
   validate :check_reword_point
