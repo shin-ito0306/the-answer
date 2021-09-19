@@ -66,8 +66,8 @@ class Question < ApplicationRecord
   end
 
   private
-  def create_notification_answer!(current_user, question_user_id, answer_question_id)
-    notification = current_user.active_notifications.new(visited_id: question_user_id, question_id: answer_question_id, action: "answer")
+  def create_notification_answer!(current_user, user_id, question_id)
+    notification = current_user.active_notifications.new(visited_id: user_id, question_id: question_id, action: "answer")
     notification.save!
   end
 
