@@ -5,7 +5,7 @@
 分からない事、困っている事、悩み事などなんでも質問することが出来ます。
 また、他の人の質問を回答し、質問者からベストアンサーに選ばれると、報酬として
 質問者からポイントを獲得することが出来ます。
-<img width="1439" alt="スクリーンショット 2021-09-19 12 58 28" src="https://user-images.githubusercontent.com/65806493/133914951-06529bd3-d3fe-458d-9ae3-46cbc4314597.png">
+<img width="1438" alt="スクリーンショット 2021-09-19 18 48 20" src="https://user-images.githubusercontent.com/65806493/133922983-eed58dc1-b307-4b74-9969-0fbe4f7a8d52.png">
 
 ## 設計図
 <img width="525" alt="スクリーンショット 2021-09-19 15 03 27" src="https://user-images.githubusercontent.com/65806493/133917243-28ef7af5-178b-4b99-a56f-5ff33258bc2c.png">
