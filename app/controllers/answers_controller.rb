@@ -47,7 +47,7 @@ class AnswersController < ApplicationController
   def best
     question = Question.find(params[:question_id])
     @answer = Answer.find(params[:answer_id])
-    unless question.have_best_answer? && question.answer_user?(@answer.user_id)
+    unless question.have_best_answer? && question.answered_by?(@answer.user_id)
       @answer.chosen_by_current_user!(current_user)
       redirect_to question_path(params[:question_id])
     else

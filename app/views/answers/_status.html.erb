@@ -1,6 +1,6 @@
 <% if answer.best_answer %>
   <i class="far fa-check-circle fa-2x text-danger"></i>
-<% elsif requirements_best_answer?(answer) %>
+<% elsif requirements_best_answer?(answer.question, answer.user_id) %>
   <%= link_to "ベストアンサーに選ぶ", question_answer_best_path(question_id: answer.question_id, answer_id: answer.id),
                                                                                 class: "btn btn-outline-danger",
                                                                                 data: { confirm: "本当によろしいですか？"}

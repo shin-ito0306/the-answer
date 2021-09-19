@@ -43,8 +43,8 @@ class Question < ApplicationRecord
     user_id == current_user.id
   end
 
-  def answer_user?(answer_user_id)
-    user_id == answer_user_id
+  def answered_by?(user_id)
+    self.user_id == user_id
   end
 
   def have_answers?
