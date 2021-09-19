@@ -55,6 +55,7 @@ class Question < ApplicationRecord
     answers.count
   end
 
+  # 回答投稿時の処理
   def answer_by_current_user!(current_user, answer_content)
     ActiveRecord::Base.transaction do
       answer = current_user.answers.new(answer_content: answer_content, question_id: id)
@@ -66,11 +67,14 @@ class Question < ApplicationRecord
   end
 
   private
+  
+  # 回答時の通知
   def create_notification_answer!(current_user, user_id, question_id)
     notification = current_user.active_notifications.new(visited_id: user_id, question_id: question_id, action: "answer")
     notification.save!
   end
 
+  # 報酬ポイントが質問者の所持ポイントより多くしない為のバリデーション
   def check_reword_point
     if user.point < reword_point
       errors.add(:reword_point,"は所持ポイントより少なくしてください")
