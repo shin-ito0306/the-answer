@@ -32,7 +32,7 @@ class Question < ApplicationRecord
   end
 
   def self.list
-    Question.all.order(created_at: 'DESC')
+    Question.all.order(updated_at: 'DESC')
   end
 
   def have_best_answer?
