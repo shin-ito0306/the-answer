@@ -8,7 +8,7 @@
 <img width="1439" alt="スクリーンショット 2021-09-19 12 58 28" src="https://user-images.githubusercontent.com/65806493/133914951-06529bd3-d3fe-458d-9ae3-46cbc4314597.png">
 
 ## 設計図
-<img width="617" alt="スクリーンショット 2021-09-19 15 01 12" src="https://user-images.githubusercontent.com/65806493/133917196-c53057d1-3caf-4bde-89af-788db9448590.png">
+<img width="525" alt="スクリーンショット 2021-09-19 15 03 27" src="https://user-images.githubusercontent.com/65806493/133917243-28ef7af5-178b-4b99-a56f-5ff33258bc2c.png">
 
 ## 機能一覧
 - ユーザー登録、ユーザーログイン機能(devise)
