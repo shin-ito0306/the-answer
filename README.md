@@ -12,7 +12,7 @@
 <img width="525" alt="スクリーンショット 2021-09-19 15 03 27" src="https://user-images.githubusercontent.com/65806493/133917243-28ef7af5-178b-4b99-a56f-5ff33258bc2c.png">
 
 ### UIFlow
-<img width="695" alt="スクリーンショット 2021-09-20 12 15 45" src="https://user-images.githubusercontent.com/65806493/133953897-de5d7766-907d-48cf-b680-6176b173f9d6.png">
+<img width="686" alt="スクリーンショット 2021-09-20 12 17 21" src="https://user-images.githubusercontent.com/65806493/133953975-0bf04bb4-c1e0-439b-ab01-726652942786.png">
 
 ## 機能一覧
 - ユーザー登録、ユーザーログイン機能(devise)
