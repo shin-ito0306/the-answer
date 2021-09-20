@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_092624) do
+ActiveRecord::Schema.define(version: 2021_09_19_075100) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 2021_09_10_092624) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visiter_id", null: false
     t.integer "visited_id", null: false
-    t.integer "answer_id"
-    t.integer "best_answer_id"
     t.string "action", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -37,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_09_10_092624) do
 
   create_table "questions", force: :cascade do |t|
     t.string "title"
-    t.text "content"
+    t.text "question_content"
     t.string "question_image_id"
     t.integer "reword_point"
     t.integer "user_id"

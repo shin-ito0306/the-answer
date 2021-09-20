@@ -1,5 +1,4 @@
 class Notification < ApplicationRecord
-  belongs_to :answer, optional: true
   belongs_to :question
 
   belongs_to :visiter, class_name: "User"
